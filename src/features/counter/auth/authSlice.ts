@@ -61,7 +61,17 @@ export const authSlice = createSlice({
   },
 });
 
-export const { fetchCredStart, fetchCredEnd, setOpenSignIn, resetOpenSignIn, setOpenSignUp, resetOpenSignUp, setOpenProfile, resetOpenProfile, editNickname } = authSlice.actions;
+export const {
+  fetchCredStart,
+  fetchCredEnd,
+  setOpenSignIn,
+  resetOpenSignIn,
+  setOpenSignUp,
+  resetOpenSignUp,
+  setOpenProfile,
+  resetOpenProfile,
+  editNickname,
+} = authSlice.actions;
 
 export const selectCount = (state: RootState) => state.counter.value;
 
