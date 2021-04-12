@@ -20,16 +20,12 @@ export const fetchAsyncLogin = createAsyncThunk(
 export const fetchAsyncRegister = createAsyncThunk(
   "auth/register",
   async (auth: PROPS_AUTHEN) => {
-    try {
-      const res = await axios.post(`${apiUrl}api/register/`, auth, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return res.data;
-    } catch (error) {
-      console.dir(error)
-    }
+    const res = await axios.post(`${apiUrl}api/register/`, auth, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res.data;
   }
 );
 
