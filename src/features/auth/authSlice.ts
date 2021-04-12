@@ -38,7 +38,7 @@ export const fetchAsyncCreateProf = createAsyncThunk(
   async (nickName: PROPS_NICKNAME) => {
     const res = await axios.post(`${apiUrl}api/profile/`, nickName, {
       headers: {
-        "Content-Type": "applicaiton/json",
+        "Content-Type": "application/json",
         Authorization: `JWT ${localStorage.localJWT}`,
       },
     });
@@ -72,7 +72,7 @@ export const fetchAsyncGetMyProf = createAsyncThunk("profile/get", async () => {
       Authorization: `JWT ${localStorage.localJWT}`,
     },
   });
-  return res.data;
+  return res.data[0];
 });
 
 export const fetchAsyncGetProfs = createAsyncThunk("profiles/get", async () => {
