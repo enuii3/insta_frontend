@@ -141,7 +141,26 @@ const Core: React.FC = () => {
               </button>
             </div>
           </>
-        ) : <div></div>}
+        ) : (
+            <div>
+              <Button
+                onClick={() => {
+                  dispatch(setOpenSignIn());
+                  dispatch(resetOpenSignUp());
+                }}
+              >
+                LogIn
+              </Button>
+              <Button
+                onClick={() => {
+                  dispatch(setOpenSignUp());
+                  dispatch(resetOpenSignIn());
+                }}
+              >
+                SignUp
+              </Button>
+            </div>
+          )}
       </div>
     </div>
   )
