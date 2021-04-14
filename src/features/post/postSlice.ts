@@ -47,7 +47,7 @@ export const fetchAsyncPatchLiked = createAsyncThunk(
       if (current === liked.new) {
         isOverlapped = true;
       } else {
-        uploadData.append("liked", String(current)),
+        uploadData.append("liked", String(current));
       }
     });
 
@@ -137,44 +137,51 @@ export const postSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAsyncLogin.fulfilled, (state, action) => {
-      localStorage.setItem("localJWT", action.payload.access);
+    builder.addCase(fetchAsyncGetPosts.fulfilled, (state, aciton) => {
+      return {
+        ...state,
+        posts: aciton.payload,
+      };
     });
-    builder.addCase(fetchAsyncCreateProf.fulfilled, (state, action) => {
-      state.myprofile = action.payload;
+    builder.addCase(fetchAsyncNewPost.fulfilled, (state, action) => {
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+      };
     });
-    builder.addCase(fetchAsyncGetMyProf.fulfilled, (state, action) => {
-      state.myprofile = action.payload;
+    builder.addCase(fetchAsyncGetComments.fulfilled, (state, action) => {
+      return {
+        ...state,
+        comments: action.payload,
+      };
     });
-    builder.addCase(fetchAsyncGetProfs.fulfilled, (state, action) => {
-      state.profiles = action.payload;
+    builder.addCase(fetchAsyncPostComment.fulfilled, (state, action) => {
+      return {
+        ...state,
+        comments: [...state.comments, action.payload],
+      };
     });
-    builder.addCase(fetchAsyncUpdateProf.fulfilled, (state, action) => {
-      state.myprofile = action.payload;
-      state.profiles = state.profiles.map((prof) =>
-        prof.id === action.payload.id ? action.payload : prof
-      );
-    });
+    builder.addCase(fetchAsyncPatchLiked.fulfilled, (state, action) => {
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post.id === action.payload.id ? action.payload : post
+        ),
+      };
+    })
   },
 });
 
 export const {
-  fetchCredStart,
-  fetchCredEnd,
-  setOpenSignIn,
-  resetOpenSignIn,
-  setOpenSignUp,
-  resetOpenSignUp,
-  setOpenProfile,
-  resetOpenProfile,
-  editNickname,
-} = authSlice.actions;
+  fetchPostStart,
+  fetchPostEnd,
+  setOpenNewPost,
+  resetOpenNewPost,
+} = postSlice.actions;
 
-export const selectIsLoadingAuth = (state: RootState) => state.auth.isLoadingAuth;
-export const selectOpenSignIn = (state: RootState) => state.auth.openSignIn;
-export const selectOpenSignUp = (state: RootState) => state.auth.openSignUp;
-export const selectOpenProfile = (state: RootState) => state.auth.openProfile;
-export const selectProfile = (state: RootState) => state.auth.myprofile;
-export const selectProfiles = (state: RootState) => state.auth.profiles;
+export const selectIsLoadingPost = (state: RootState) => state.post.isLoadingPost;
+export const selectOpenNewPost = (state: RootState) => state.post.openNewPost;
+export const selectPosts = (state: RootState) => state.post.posts;
+export const selectComments = (state: RootState) => state.post.comments;
 
-export default authSlice.reducer;
+export default postSlice.reducer;
