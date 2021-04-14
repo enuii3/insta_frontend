@@ -20,16 +20,12 @@ export const fetchAsyncLogin = createAsyncThunk(
 export const fetchAsyncRegister = createAsyncThunk(
   "auth/register",
   async (auth: PROPS_AUTHEN) => {
-    try {
-      const res = await axios.post(`${apiUrl}api/register/`, auth, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return res.data;
-    } catch (error) {
-      console.dir(error)
-    }
+    const res = await axios.post(`${apiUrl}api/register/`, auth, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res.data;
   }
 );
 
@@ -72,6 +68,7 @@ export const fetchAsyncGetMyProf = createAsyncThunk("profile/get", async () => {
       Authorization: `JWT ${localStorage.localJWT}`,
     },
   });
+  console.log(`fetchAsyncGetMyProf is ${JSON.stringify(res.data)}`)
   return res.data[0];
 });
 
