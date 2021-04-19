@@ -19,10 +19,6 @@ export const fetchAsyncNewPost = createAsyncThunk(
   "post/post",
   async (newPost: PROPS_NEWPOST) => {
     const uploadData = new FormData();
-
-    console.log(`uploadData is ${uploadData}`)
-    console.log(`newPost is ${newPost}`)
-
     uploadData.append("title", newPost.title);
     newPost.img && uploadData.append("img", newPost.img, newPost.img.name);
 

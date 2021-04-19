@@ -68,7 +68,6 @@ export const fetchAsyncGetMyProf = createAsyncThunk("profile/get", async () => {
       Authorization: `JWT ${localStorage.localJWT}`,
     },
   });
-  console.log(`fetchAsyncGetMyProf is ${JSON.stringify(res.data)}`)
   return res.data[0];
 });
 

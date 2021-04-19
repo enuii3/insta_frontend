@@ -1,5 +1,5 @@
 export interface File extends Blob {
-  readonly lastModifield: number;
+  readonly lastModified: number;
   readonly name: string;
 }
 /*authSlice.ts*/
