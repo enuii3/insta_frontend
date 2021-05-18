@@ -102,7 +102,7 @@ const Core: React.FC = () => {
       <EditProfile />
       <NewPost />
       <div className={styles.core_header}>
-        <h1 className={styles.core_title}>SNS clone</h1>
+        <h1 className={styles.core_title}>ninstagram</h1>
         {profile?.nickName ? (
           <>
             <button
